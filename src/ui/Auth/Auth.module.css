@@ -1,0 +1,12 @@
+.form label {
+  display: flex;
+  margin: 10px 0;
+}
+
+.form span {
+  min-width: 70px;
+}
+
+.form button {
+  cursor: pointer;
+}

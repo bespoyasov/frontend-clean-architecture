@@ -1,0 +1,17 @@
+.cookie {
+  display: block;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  padding: 10px;
+}
+
+.image {
+  display: block;
+  font-size: 8em;
+  line-height: 1;
+  text-align: center;
+}
+
+.cookie ul {
+  margin: 10px 0;
+}
