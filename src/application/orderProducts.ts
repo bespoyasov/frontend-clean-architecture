@@ -13,9 +13,13 @@ export function useOrderProducts() {
   const cartStorage = useCartStorage();
 
   async function orderProducts(user: User, cookies: Cookie[]) {
+    // We can validate the data and check if there are no cookies.
+
     const order = createOrder(user, cookies);
     const paid = await payment.tryPay(order.total);
     if (!paid) return notifier.notify("Оплата не прошла 🤷");
+
+    // We can save the order on the remote server, if necessary.
 
     const { orders } = orderStorage;
     orderStorage.updateOrders([...orders, order]);
