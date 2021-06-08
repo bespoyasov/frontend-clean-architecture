@@ -19,7 +19,7 @@ export function Buy() {
   async function handleSubmit(e: React.FormEvent) {
     setLoading(true);
     e.preventDefault();
-    await orderProducts(user!, cart.products);
+    await orderProducts(user!, cart);
     setLoading(false);
   }
 
