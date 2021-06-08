@@ -12,6 +12,9 @@ export function useOrderProducts() {
   const orderStorage = useOrdersStorage();
   const cartStorage = useCartStorage();
 
+  // We can also access the user and their cart product via hooks here
+  // and don't pass them as function arguments.
+
   async function orderProducts(user: User, cookies: Cookie[]) {
     // We can validate the data and check if there are no cookies.
 
