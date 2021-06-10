@@ -1,5 +1,5 @@
 import { contains } from "../../domain/cart";
-import { Cookie as CookieType } from "../../domain/product";
+import { Product } from "../../domain/product";
 import { useAddToCart } from "../../application/addToCart";
 
 import { useStore } from "../../services/store";
@@ -7,7 +7,7 @@ import styles from "./Cookie.module.css";
 import { Toppings } from "./Toppings";
 
 type CookieProps = {
-  cookie: CookieType;
+  cookie: Product;
 };
 
 export function Cookie({ cookie }: CookieProps) {

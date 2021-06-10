@@ -1,13 +1,13 @@
-import { Cookie } from "./product";
+import { Product } from "./product";
 
 export type Cart = {
-  products: Cookie[];
+  products: Product[];
 };
 
-export function addProduct(cart: Cart, product: Cookie): Cart {
+export function addProduct(cart: Cart, product: Product): Cart {
   return { ...cart, products: [...cart.products, product] };
 }
 
-export function contains(cart: Cart, product: Cookie): boolean {
+export function contains(cart: Cart, product: Product): boolean {
   return cart.products.some(({ id }) => id === product.id);
 }

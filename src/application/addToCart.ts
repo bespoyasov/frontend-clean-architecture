@@ -1,4 +1,4 @@
-import { Cookie } from "../domain/product";
+import { Product } from "../domain/product";
 import { hasAllergy, User } from "../domain/user";
 import { addProduct } from "../domain/cart";
 
@@ -10,7 +10,7 @@ export function useAddToCart() {
   const storage: CartStorageService = useCartStorage();
   const notifier: NotificationService = useNotifier();
 
-  function addToCart(user: User, product: Cookie): void {
+  function addToCart(user: User, product: Product): void {
     const warning = "Эта печенька опасна для здоровья! 😱";
     const isDangerous = product.toppings.some((item) => hasAllergy(user, item));
     if (isDangerous) return notifier.notify(warning);

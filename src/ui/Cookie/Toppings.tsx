@@ -1,9 +1,9 @@
-import { Cookie, ingredients } from "../../domain/product";
+import { Product, ingredients } from "../../domain/product";
 import { hasAllergy, hasPreference } from "../../domain/user";
 import { useUserStorage } from "../../services/storageAdapter";
 
 type ToppingsProps = {
-  cookie: Cookie;
+  cookie: Product;
 };
 
 export function Toppings({ cookie }: ToppingsProps) {

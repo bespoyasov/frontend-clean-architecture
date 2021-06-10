@@ -1,5 +1,5 @@
 export type ProductTitle = string;
-export type Cookie = {
+export type Product = {
   id: UniqueId;
   title: ProductTitle;
   price: PriceCents;
@@ -14,6 +14,6 @@ export const ingredients: Record<Ingredient, string> = {
   peanuts: "Арахис",
 };
 
-export function totalPrice(products: Cookie[]): PriceCents {
+export function totalPrice(products: Product[]): PriceCents {
   return products.reduce((total, { price }) => total + price, 0);
 }
