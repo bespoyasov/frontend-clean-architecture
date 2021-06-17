@@ -8,9 +8,9 @@ export type User = {
 };
 
 export function hasAllergy(user: User, ingredient: Ingredient): boolean {
-  return user?.allergies.includes(ingredient);
+  return user.allergies.includes(ingredient);
 }
 
 export function hasPreference(user: User, ingredient: Ingredient): boolean {
-  return user?.preferences.includes(ingredient);
+  return user.preferences.includes(ingredient);
 }
