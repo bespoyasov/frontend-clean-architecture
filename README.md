@@ -19,9 +19,9 @@ Shared Kernel — это тот код и те данные, от которых
 По-хорошему, реализация типа `Order` должна быть классом, аргументами конструктора которого были бы все необходимые данные, включая дату. А создание этого класса находилось бы в прикладном слое в `orderProducts`:
 
 ```ts
-async function orderProducts(user: User, cookies: Cookie[]) {
+async function orderProducts(user: User, products: Product[]) {
   const datetime = currentDatetime();
-  const order = new Order(user, cookies, datetime);
+  const order = new Order(user, products, datetime);
 
   // ...
 }
