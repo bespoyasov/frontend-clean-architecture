@@ -4,7 +4,7 @@
 
 - [Слайды и полезные ссылки](https://bespoyasov.ru/talks/podlodka-conf-clean-architecture/);
 - [Пример работы приложения](https://bespoyasov.ru/showcase/frontend-clean-architecture/);
-- Запись доклада (скоро будет).
+- [Запись доклада](https://youtu.be/h4WQRqNjmX0).
 
 ## Что учесть
 
