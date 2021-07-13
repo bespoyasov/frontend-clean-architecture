@@ -3,6 +3,7 @@
 Пример приложения, собранного по трёхслойной архитектуре.
 
 - [Слайды и полезные ссылки](https://bespoyasov.ru/talks/podlodka-conf-clean-architecture/);
+- [Пример работы приложения](https://bespoyasov.ru/showcase/frontend-clean-architecture/);
 - Запись доклада (скоро будет).
 
 ## Что учесть
