@@ -31,6 +31,42 @@ async function orderProducts(user: User, products: Product[]) {
 }
 ```
 
+### Предоставление и тестируемость юз-кейса
+
+Сама [функция создания заказа `orderProduct`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts#L24) не зависит от фреймворка и может быть использована и протестирована в отрыве от Реакта. Хук-обёртка используется лишь для предоставления юз-кейса компонентам и внедрения сервисов в сам юз-кейс.
+
+В каноническом исполнении функция юз-кейса была бы вынесена за пределы хука, а сервисы были бы переданы юз-кейсу через последний аргумент или с помощью DI:
+
+```ts
+type Dependencies = {
+  notifier?: NotificationService;
+  payment?: PaymentService;
+  orderStorage?: OrderStorageService;
+}
+
+async function orderProducts(user: User, cart: Cart, dependencies: Dependencies = defaultDependencies) {
+  const {notifier, payment, orderStorage} = dependencies;
+  
+  // ...
+}
+```
+
+Хук в этом случае превратился бы в адаптер:
+
+```ts
+function useOrderProducts() {
+  const notifier = useNotifier();
+  const payment = usePayment();
+  const orderStorage = useOrdersStorage();
+  
+  return (user: User, cart: Cart) => orderProducts(user, cart, {
+    notifier, payment, orderStorage,
+  })
+}
+```
+
+В докладе я обращаю внимание этот момент и поясняю, как будет сделать правильно с точки зрения чистоты подхода. В исходниках же я посчитал, что это необязательно, так как отвлекало бы от сути. Также это — один из «срезанных углов», о которых я упоминаю в начале доклада.
+
 ### Кустарный DI
 
 В прикладном слое мы «внедряем» сервисы руками:
