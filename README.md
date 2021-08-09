@@ -18,7 +18,7 @@ Shared Kernel — это тот код и те данные, от которых
 
 ### «Зависимость» в домене
 
-В функции `createOrder` используется «библиотечная» функция `currentDatetime` для указания даты создания заказа. Это не совсем корректно, потому что домен не должен ни от чего зависеть.
+В функции [`createOrder`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/domain/order.ts#L15) используется «библиотечная» функция `currentDatetime` для указания даты создания заказа. Это не совсем корректно, потому что домен не должен ни от чего зависеть.
 
 По-хорошему, реализация типа `Order` должна быть классом, аргументами конструктора которого были бы все необходимые данные, включая дату. А создание этого класса находилось бы в прикладном слое в `orderProducts`:
 
@@ -69,7 +69,7 @@ function useOrderProducts() {
 
 ### Кустарный DI
 
-В прикладном слое мы «внедряем» сервисы руками:
+В [прикладном слое](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts) мы «внедряем» сервисы руками:
 
 ```ts
 export function useAuthenticate() {
