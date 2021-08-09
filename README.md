@@ -12,9 +12,9 @@
 
 ### Shared Kernel
 
-Shared Kernel — это тот код и те данные, от которых могут зависеть любые модули, но зависимость от которых не повышает зацепление.
+Shared Kernel — это тот код и те данные, от которых могут зависеть любые модули, но _зависимость от которых не повышает зацепление_, поэтому сюда можно помещать не любой код. Подробнее об ограничениях и применении хорошо описано в статье [“DDD, Hexagonal, Onion, Clean, CQRS, … How I put it all together”](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/).
 
-В этом приложении shared kernel включает в себя аннотации типов, которые могут быть доступны где угодно. Такие типы собраны в `shared-kernel.d.ts`.
+В этом приложении shared kernel включает в себя аннотации типов, которые могут быть доступны где и кому угодно. Такие типы собраны в [`shared-kernel.d.ts`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/shared-kernel.d.ts).
 
 ### «Зависимость» в домене
 
