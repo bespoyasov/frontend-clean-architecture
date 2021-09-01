@@ -1,5 +1,7 @@
 # Frontend Clean Architecture
 
+> [Read this in English 🇬🇧](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/en.md)
+
 Пример приложения, собранного по трёхслойной архитектуре.
 
 - [Слайды и полезные ссылки](https://bespoyasov.ru/talks/podlodka-conf-clean-architecture/);
