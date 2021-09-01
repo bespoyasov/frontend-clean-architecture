@@ -3,7 +3,7 @@
 An example app built using the clean architecture.
 
 - [Working app](https://bespoyasov.ru/showcase/frontend-clean-architecture/en/)
-- [Huge post about it](https://dev.to/bespoyasov/clean-architecture-on-frontend-198c-temp-slug-29800?preview=66c3113f2acf18deb823ae015009cc27178f315a3cd6cbb347ef4334d62d5d33ad4794815a54e4d3a659057e523a33dca31253ef935fc9dbbd8e33da)
+- [Huge post about it](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311)
 
 ## Things to Consider
 
