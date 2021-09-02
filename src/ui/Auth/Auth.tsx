@@ -24,7 +24,7 @@ export function Auth() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       <label>
-        <span>Имя:</span>
+        <span>Name:</span>
         <input
           type="text"
           name="name"
@@ -34,7 +34,7 @@ export function Auth() {
         />
       </label>
       <label>
-        <span>Почта:</span>
+        <span>Email:</span>
         <input
           type="email"
           name="email"
@@ -44,7 +44,7 @@ export function Auth() {
       </label>
 
       <button type="submit" disabled={loading}>
-        {loading ? "Пробуем войти..." : "Войти"}
+        {loading ? "Trying to enter..." : "Enter"}
       </button>
     </form>
   );

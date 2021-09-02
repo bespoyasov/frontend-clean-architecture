@@ -7,11 +7,11 @@ export type Product = {
 };
 
 export const ingredients: Record<Ingredient, string> = {
-  chocolate: "Шоколад",
-  cocoa: "Какао",
-  cherry: "Вишня",
-  marshmallow: "Маршмеллоу",
-  peanuts: "Арахис",
+  chocolate: "Chocolate",
+  cocoa: "Cocoa",
+  cherry: "Cherry",
+  marshmallow: "Mashmallow",
+  peanuts: "Peanuts",
 };
 
 export function totalPrice(products: Product[]): PriceCents {

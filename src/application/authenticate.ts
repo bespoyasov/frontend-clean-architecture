@@ -2,21 +2,21 @@ import { UserName } from "../domain/user";
 import { useAuth } from "../services/authAdapter";
 import { useUserStorage } from "../services/storageAdapter";
 
-// Обратите внимание, что интерфейсы портов находятся в _прикладном слое_,
-// а вот их реализация — в слое _адаптеров_.
+// Note that the port interfaces are in the _application layer_,
+// but their implementation is in the _adapter_ layer.
 import { AuthenticationService, UserStorageService } from "./ports";
 
 export function useAuthenticate() {
-  // Обычно получение сервисов работает через Dependency Injection.
-  // Тут мы можем использовать хуки как кустарный ”DI-контейнер“.
+  // Usually, getting services works through Dependency Injection.
+  // Here we can use hooks as a crude "DI-container".
 
-  // Функция юз-кейса не вызывает сторонние сервисы напрямую,
-  // вместо этого она полагается на интерфейсы, которые объявлены ранее.
+  // The usecase function does not call third-party services directly,
+  // instead, it relies on interfaces that were declared earlier.
   const storage: UserStorageService = useUserStorage();
   const auth: AuthenticationService = useAuth();
 
-  // В идеале мы бы передали аргументом команду,
-  // которая бы инкапсулировала все входные данные.
+  // Ideally, we would pass a command as an argument,
+  // which would encapsulate all input data.
   async function authenticate(name: UserName, email: Email): Promise<void> {
     const user = await auth.auth(name, email);
     storage.updateUser(user);

@@ -1,43 +1,44 @@
 # Frontend Clean Architecture
 
-> [Read this in English 🇬🇧](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/en.md)
+> [Read this in Russian](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/ru.md)
 
-Пример приложения, собранного по трёхслойной архитектуре.
+# Frontend Clean Architecture
 
-- [Слайды и полезные ссылки](https://bespoyasov.ru/talks/podlodka-conf-clean-architecture/);
-- [Пример работы приложения](https://bespoyasov.ru/showcase/frontend-clean-architecture/);
-- [Запись доклада](https://youtu.be/h4WQRqNjmX0).
+An example app built using the clean architecture.
 
-## Что учесть
+- [Working app](https://bespoyasov.ru/showcase/frontend-clean-architecture/en/)
+- [Huge post about it](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311)
 
-В коде есть несколько компромиссов, о которых я рассказывал в докладе на Frontend Crew.
+## Things to Consider
+
+There are a few compromises and simplifications in the code that are worth to be mentioned.
 
 ### Shared Kernel
 
-Shared Kernel — это тот код и те данные, от которых могут зависеть любые модули, но _зависимость от которых не повышает зацепление_, поэтому сюда можно помещать не любой код. Подробнее об ограничениях и применении хорошо описано в статье [“DDD, Hexagonal, Onion, Clean, CQRS, … How I put it all together”](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/).
+Shared Kernel is the code and data on which any modules can depend, but _only if this dependency would not increase coupling_. More details about the limitations and application are well described in the article ["DDD, Hexagonal, Onion, Clean, CQRS, ... How I put it all together"](https://herbertograca.com/2017/11/16/explicit-architecture-01-ddd-hexagonal-onion-clean-cqrs-how-i-put-it-all-together/).
 
-В этом приложении shared kernel включает в себя аннотации типов, которые могут быть доступны где и кому угодно. Такие типы собраны в [`shared-kernel.d.ts`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/shared-kernel.d.ts).
+In this application, the shared kernel includes global type annotations that can be accessed anywhere in the app and by any module. Such types are collected in [`shared-kernel.d.ts`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/shared-kernel.d.ts).
 
-### «Зависимость» в домене
+### Dependency in the Domain
 
-В функции [`createOrder`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/domain/order.ts#L15) используется «библиотечная» функция `currentDatetime` для указания даты создания заказа. Это не совсем корректно, потому что домен не должен ни от чего зависеть.
+The [`createOrder`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/domain/order.ts#L15) function uses the library-like function `currentDatetime` to specify the order creation date. This is not quite correct, because the domain should not depend on anything.
 
-По-хорошему, реализация типа `Order` должна быть классом, аргументами конструктора которого были бы все необходимые данные, включая дату. А создание этого класса находилось бы в прикладном слое в `orderProducts`:
+Ideally, the implementation of the `Order` type should accept all the necessary data, including the date, from outside. The creation of this entity would be in the application layer in `orderProducts`:
 
 ```ts
 async function orderProducts(user: User, { products }: Cart) {
   const datetime = currentDatetime();
-  const order = new Order(user, cart, datetime);
+  const order = new Order(user, products, datetime);
 
   // ...
 }
 ```
 
-### Предоставление и тестируемость юз-кейса
+### Use Case Testability
 
-Сама [функция создания заказа `orderProduct`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts#L24) не зависит от фреймворка и может быть использована и протестирована в отрыве от Реакта. Хук-обёртка используется лишь для предоставления юз-кейса компонентам и внедрения сервисов в сам юз-кейс.
+The order creation function [`orderProduct`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts#L24) itself is framework-independent right now and can't be used and tested in isolation from React. The hook wrapper though is only used to provide the use case to components and to inject services into the use case itself.
 
-В каноническом исполнении функция юз-кейса была бы вынесена за пределы хука, а сервисы были бы переданы юз-кейсу через последний аргумент или с помощью DI:
+In a canonical implementation, the function of the use case would be extracted outside the hook, and the services would be passed to the use case via a last argument or a DI:
 
 ```ts
 type Dependencies = {
@@ -57,7 +58,7 @@ async function orderProducts(
 }
 ```
 
-Хук в этом случае превратился бы в адаптер:
+Hook would then become an adapter:
 
 ```ts
 function useOrderProducts() {
@@ -74,11 +75,11 @@ function useOrderProducts() {
 }
 ```
 
-В докладе я обращаю внимание этот момент и поясняю, как будет сделать правильно с точки зрения чистоты подхода. В исходниках же я посчитал, что это необязательно, так как отвлекало бы от сути. Также это — один из «срезанных углов», о которых я упоминаю в начале доклада.
+In the sources, I thought it was unnecessary, as it would distract from the essence.
 
-### Кустарный DI
+### Crooked DI
 
-В [прикладном слое](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts) мы «внедряем» сервисы руками:
+In the [application layer](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts) we inject services by hand:
 
 ```ts
 export function useAuthenticate() {
@@ -89,6 +90,6 @@ export function useAuthenticate() {
 }
 ```
 
-По-хорошему, это должно быть автоматизировано и сделано через внедрение зависимостей. В случае с Реактом и хуками мы, в принципе, можем использовать их, как «контейнер», который возвращает реализацию указанного интерфейса.
+In a good way, this should be automated and done through the dependency injection. But in the case of React and hooks, we can use them as a “container” that returns an implementation of the specified interface.
 
-В конкретно этом приложении настраивать DI особо смысла не было, потому что это бы отвлекало от сути архитектуры.
+In this particular application, it didn't make much sense to set up the DI because it would distract from the main topic.

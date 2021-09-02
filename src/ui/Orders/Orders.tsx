@@ -6,7 +6,7 @@ export function Orders() {
 
   return (
     <section>
-      <h2>Заказы</h2>
+      <h2>Orders</h2>
       <ul>
         {orders.map((order) => (
           <li key={order.created}>

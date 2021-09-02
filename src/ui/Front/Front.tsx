@@ -8,7 +8,7 @@ export function Front() {
 
   return (
     <main>
-      <h1>Печеньки</h1>
+      <h1>Cookies</h1>
 
       <ul className={styles.list}>
         {cookies.map((cookie: Product) => (

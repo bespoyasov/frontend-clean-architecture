@@ -9,11 +9,11 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Link className={styles.logo} to="/">
-        Кукии!!1 🍪
+          Cookie!!!1 🍪
       </Link>
 
       {!user ? (
-        <Link to="/auth">Войти</Link>
+        <Link to="/auth">Log in</Link>
       ) : (
         <Link to="/user">
           {user.name} ({cart.products.length})
