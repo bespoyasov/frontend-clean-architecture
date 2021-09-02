@@ -22,7 +22,7 @@ The [`createOrder`](https://github.com/bespoyasov/frontend-clean-architecture/bl
 Ideally, the implementation of the `Order` type should accept all the necessary data, including the date, from outside. The creation of this entity would be in the application layer in `orderProducts`:
 
 ```ts
-async function orderProducts(user: User, products: Product[]) {
+async function orderProducts(user: User, { products }: Cart) {
   const datetime = currentDatetime();
   const order = new Order(user, products, datetime);
 

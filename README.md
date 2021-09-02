@@ -10,7 +10,7 @@
 
 ## Что учесть
 
-В коде есть несколько компромиссов, о которых я рассказывал в докладе на Frontend Crew. 
+В коде есть несколько компромиссов, о которых я рассказывал в докладе на Frontend Crew.
 
 ### Shared Kernel
 
@@ -25,9 +25,9 @@ Shared Kernel — это тот код и те данные, от которых
 По-хорошему, реализация типа `Order` должна быть классом, аргументами конструктора которого были бы все необходимые данные, включая дату. А создание этого класса находилось бы в прикладном слое в `orderProducts`:
 
 ```ts
-async function orderProducts(user: User, products: Product[]) {
+async function orderProducts(user: User, { products }: Cart) {
   const datetime = currentDatetime();
-  const order = new Order(user, products, datetime);
+  const order = new Order(user, cart, datetime);
 
   // ...
 }
@@ -44,11 +44,15 @@ type Dependencies = {
   notifier?: NotificationService;
   payment?: PaymentService;
   orderStorage?: OrderStorageService;
-}
+};
 
-async function orderProducts(user: User, cart: Cart, dependencies: Dependencies = defaultDependencies) {
-  const {notifier, payment, orderStorage} = dependencies;
-  
+async function orderProducts(
+  user: User,
+  cart: Cart,
+  dependencies: Dependencies = defaultDependencies
+) {
+  const { notifier, payment, orderStorage } = dependencies;
+
   // ...
 }
 ```
@@ -60,10 +64,13 @@ function useOrderProducts() {
   const notifier = useNotifier();
   const payment = usePayment();
   const orderStorage = useOrdersStorage();
-  
-  return (user: User, cart: Cart) => orderProducts(user, cart, {
-    notifier, payment, orderStorage,
-  })
+
+  return (user: User, cart: Cart) =>
+    orderProducts(user, cart, {
+      notifier,
+      payment,
+      orderStorage,
+    });
 }
 ```
 
