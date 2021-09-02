@@ -24,7 +24,7 @@ export function useOrderProducts() {
   async function orderProducts(user: User, cart: Cart) {
     // Здесь мы можем провалидировать данные перед созданием заказа.
 
-    const order = createOrder(user, cart.products);
+    const order = createOrder(user, cart);
 
     // Функция юз-кейса не вызывает сторонние сервисы напрямую,
     // вместо этого она полагается на интерфейсы, которые объявлены ранее.
