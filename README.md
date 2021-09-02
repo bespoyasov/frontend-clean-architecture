@@ -1,6 +1,9 @@
 # Frontend Clean Architecture
 
-> [Read this in Russian](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/ru.md)
+> [Credits to: Alex!](https://github.com/bespoyasov)
+
+
+> [Read this in Russian](https://github.com/bespoyasov/frontend-clean-architecture)
 
 # Frontend Clean Architecture
 
