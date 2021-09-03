@@ -1,12 +1,5 @@
 # Frontend Clean Architecture
 
-> [Credits to: Alex!](https://github.com/bespoyasov)
-
-
-> [Read this in Russian](https://github.com/bespoyasov/frontend-clean-architecture)
-
-# Frontend Clean Architecture
-
 An example app built using the clean architecture.
 
 - [Working app](https://bespoyasov.ru/showcase/frontend-clean-architecture/en/)
