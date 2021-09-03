@@ -25,10 +25,10 @@ export function Buy() {
 
   return (
     <section>
-      <h2>Оформить заказ</h2>
+      <h2>Shopping Cart Checkout</h2>
       <form className={styles.form} onSubmit={handleSubmit}>
         <label>
-          <span>Имя:</span>
+          <span>Name:</span>
           <input
             type="text"
             name="name"
@@ -38,7 +38,7 @@ export function Buy() {
           />
         </label>
         <label>
-          <span>Почта:</span>
+          <span>Mail:</span>
           <input
             type="email"
             name="email"
@@ -47,7 +47,7 @@ export function Buy() {
           />
         </label>
         <label>
-          <span>Адрес:</span>
+          <span>Address:</span>
           <textarea
             name="address"
             value={address}
@@ -56,7 +56,7 @@ export function Buy() {
         </label>
 
         <button type="submit" disabled={loading}>
-          {loading ? "Готовим заказ" : "Оплатить онлайн"}
+          {loading ? "Preparing an order" : "Pay online"}
         </button>
       </form>
     </section>

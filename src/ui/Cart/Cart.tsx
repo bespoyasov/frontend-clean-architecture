@@ -8,7 +8,7 @@ export function Cart() {
 
   return (
     <section>
-      <h2>Корзина</h2>
+      <h2>Cart</h2>
 
       <ul className={styles.list}>
         {cart.products.map((product) => (
@@ -18,7 +18,7 @@ export function Cart() {
         ))}
       </ul>
 
-      <p>Итого: {totalPrice(cart.products) / 100} ₽</p>
+      <p>Total: {totalPrice(cart.products) / 100} ₽</p>
     </section>
   );
 }

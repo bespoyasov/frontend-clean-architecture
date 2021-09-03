@@ -2,36 +2,36 @@ import { User } from "../domain/user";
 import { Cart } from "../domain/cart";
 import { createOrder } from "../domain/order";
 
-// Обратите внимание, что интерфейсы портов находятся в _прикладном слое_,
-// а вот их реализация — в слое _адаптеров_.
+// Note that the port interfaces are in the _application layer_,
+// but their implementation is in the _adapter_ layer.
 import { usePayment } from "../services/paymentAdapter";
 import { useNotifier } from "../services/notificationAdapter";
 import { useCartStorage, useOrdersStorage } from "../services/storageAdapter";
 
 export function useOrderProducts() {
-  // Обычно получение сервисов работает через Dependency Injection.
-  // Тут мы можем использовать хуки как кустарный ”DI-контейнер“.
+  // Usually, getting services works through Dependency Injection.
+  // Here we can use hooks as a crude "DI-container".
   const notifier = useNotifier();
   const payment = usePayment();
   const orderStorage = useOrdersStorage();
   const cartStorage = useCartStorage();
 
-  // Можем также получить `user` и `cart` прямо тут через соответствующие хуки
-  // и не передавать их как аргументы к функции.
+  // We can also get `user` and `cart` right here through the corresponding hooks
+  // and not pass them as arguments to a function.
 
-  // В идеале мы бы передали аргументом команду,
-  // которая бы инкапсулировала все входные данные.
+  // Ideally, we would pass a command as an argument,
+  // which would encapsulate all input data.
   async function orderProducts(user: User, cart: Cart) {
-    // Здесь мы можем провалидировать данные перед созданием заказа.
+    // Here we can validate the data before creating the order.
 
     const order = createOrder(user, cart);
 
-    // Функция юз-кейса не вызывает сторонние сервисы напрямую,
-    // вместо этого она полагается на интерфейсы, которые объявлены ранее.
+    // The usecase function does not call third-party services directly,
+    // instead, it relies on interfaces that were declared earlier.
     const paid = await payment.tryPay(order.total);
-    if (!paid) return notifier.notify("Оплата не прошла 🤷");
+    if (!paid) return notifier.notify("No payment. 🤷");
 
-    // А тут можем сохранить заказ на сервере, если нужно.
+    // And here we can save the order on the server, if necessary.
 
     const { orders } = orderStorage;
     orderStorage.updateOrders([...orders, order]);

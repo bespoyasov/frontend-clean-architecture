@@ -11,7 +11,7 @@ export function useAddToCart() {
   const notifier: NotificationService = useNotifier();
 
   function addToCart(user: User, product: Product): void {
-    const warning = "Эта печенька опасна для здоровья! 😱";
+    const warning = "This cookie is dangerous to your health! 😱";
     const isDangerous = product.toppings.some((item) => hasAllergy(user, item));
     if (isDangerous) return notifier.notify(warning);
 
