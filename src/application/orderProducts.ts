@@ -9,8 +9,8 @@ import { useNotifier } from "../services/notificationAdapter";
 import { useCartStorage, useOrdersStorage } from "../services/storageAdapter";
 
 export function useOrderProducts() {
-  // Usually, getting services works through Dependency Injection.
-  // Here we can use hooks as a crude "DI-container".
+  // Usually, we access services through Dependency Injection.
+  // Here we can use hooks as a crooked “DI-container”.
   const notifier = useNotifier();
   const payment = usePayment();
   const orderStorage = useOrdersStorage();
@@ -26,10 +26,10 @@ export function useOrderProducts() {
 
     const order = createOrder(user, cart);
 
-    // The usecase function does not call third-party services directly,
-    // instead, it relies on interfaces that were declared earlier.
+    // The use case function doesn't call third-party services directly,
+    // instead, it relies on the interfaces we declared earlier.
     const paid = await payment.tryPay(order.total);
-    if (!paid) return notifier.notify("No payment. 🤷");
+    if (!paid) return notifier.notify("The payment wasn't successful 🤷");
 
     // And here we can save the order on the server, if necessary.
 

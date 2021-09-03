@@ -5,10 +5,9 @@ import {
 } from "../application/ports";
 import { useStore } from "./store";
 
-// It is possible to divide the total storage into several ones.
-// Inside the corresponding hooks we can apply
-// memoization, optimizations, selectors...
-// You see.
+// It's also possible to split the whole storage into atomic stores.
+// Inside corresponding hooks we can apply memoization, optimizations, selectors...
+// Well, you get the idea.
 
 export function useUserStorage(): UserStorageService {
   return useStore();

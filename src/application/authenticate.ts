@@ -7,11 +7,11 @@ import { useUserStorage } from "../services/storageAdapter";
 import { AuthenticationService, UserStorageService } from "./ports";
 
 export function useAuthenticate() {
-  // Usually, getting services works through Dependency Injection.
-  // Here we can use hooks as a crude "DI-container".
+  // Usually, we access services through Dependency Injection.
+  // Here we can use hooks as a crooked “DI-container”.
 
-  // The usecase function does not call third-party services directly,
-  // instead, it relies on interfaces that were declared earlier.
+  // The use case function doesn't call third-party services directly,
+  // instead, it relies on the interfaces we declared earlier.
   const storage: UserStorageService = useUserStorage();
   const auth: AuthenticationService = useAuth();
 
