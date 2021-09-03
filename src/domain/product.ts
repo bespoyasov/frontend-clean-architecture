@@ -8,10 +8,10 @@ export type Product = {
 
 export const ingredients: Record<Ingredient, string> = {
   chocolate: "Chocolate",
-  cocoa: "Cocoa",
+  cocoa: "Cocoa Powder",
   cherry: "Cherry",
-  marshmallow: "Mashmallow",
-  peanuts: "Peanuts",
+  marshmallow: "Marshmallow",
+  peanuts: "Peanut Butter",
 };
 
 export function totalPrice(products: Product[]): PriceCents {
