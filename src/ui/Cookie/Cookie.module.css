@@ -10,8 +10,13 @@
   font-size: 8em;
   line-height: 1;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 .cookie ul {
   margin: 10px 0;
+}
+
+.contains {
+  padding-inline-start: 0.5rem;
 }
