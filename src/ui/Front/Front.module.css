@@ -13,7 +13,7 @@
   list-style: none;
 }
 
-@media screen and (min-width: 600px) {
+@media screen and (min-width: 680px) {
   .list {
     --cols: 3;
   }
