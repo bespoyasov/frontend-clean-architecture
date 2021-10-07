@@ -26,7 +26,7 @@ export function Cookie({ cookie }: CookieProps) {
         </button>
       )}
 
-      {contains(cart, cookie) && <>In your cart</>}
+      {contains(cart, cookie) && <span className={styles.contains}>In your cart</span>}
     </article>
   );
 }

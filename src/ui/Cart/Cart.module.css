@@ -1,6 +1,8 @@
 .list {
+  --cols: auto-fit;
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--cols), minmax(200px, 1fr));
   gap: 20px;
 }
 
@@ -9,4 +11,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
+}
+
+@media screen and (min-width: 680px) {
+  .list {
+    --cols: 3;
+  }
 }
