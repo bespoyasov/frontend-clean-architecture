@@ -2,7 +2,7 @@ import { contains } from "../../domain/cart";
 import { Product } from "../../domain/product";
 import { useAddToCart } from "../../application/addToCart";
 
-import { useStore } from "../../services/store";
+import { useUserStorage, useCartStorage } from "../../services/storageAdapter";
 import styles from "./Cookie.module.css";
 import { Toppings } from "./Toppings";
 
@@ -11,7 +11,8 @@ type CookieProps = {
 };
 
 export function Cookie({ cookie }: CookieProps) {
-  const { user, cart } = useStore();
+  const { user } = useUserStorage();
+  const { cart } = useCartStorage();
   const { addToCart } = useAddToCart();
 
   return (
@@ -26,7 +27,9 @@ export function Cookie({ cookie }: CookieProps) {
         </button>
       )}
 
-      {contains(cart, cookie) && <span className={styles.contains}>In your cart</span>}
+      {contains(cart, cookie) && (
+        <span className={styles.contains}>In your cart</span>
+      )}
     </article>
   );
 }
