@@ -1,6 +1,6 @@
 # Frontend Clean Architecture
 
-> [Read this in Russian 🇷🇺](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/ru.md)
+> Read this [in Russian](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/docs/ru.md).
 
 An example app built using the clean architecture.
 
