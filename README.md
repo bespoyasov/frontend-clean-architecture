@@ -2,7 +2,7 @@
 
 # Frontend Clean Architecture
 
-An example app built using the clean architecture.
+A React + TypeScript example app built using the clean architecture in a functional(-ish) way.
 
 - [Working app](https://bespoyasov.ru/showcase/frontend-clean-architecture/en/)
 - [Huge post about it](https://dev.to/bespoyasov/clean-architecture-on-frontend-4311)
