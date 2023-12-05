@@ -34,7 +34,7 @@ async function orderProducts(user: User, { products }: Cart) {
 
 ### Use Case Testability
 
-The order creation function [`orderProduct`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts#L24) itself is framework-independent right now and can't be used and tested in isolation from React. The hook wrapper though is only used to provide the use case to components and to inject services into the use case itself.
+The order creation function [`orderProduct`](https://github.com/bespoyasov/frontend-clean-architecture/blob/master/src/application/orderProducts.ts#L24) itself is framework-dependent right now and cannot be used or tested in isolation outside of React. The hook wrapper though is only used to provide the use case to components and to inject services into the use case itself.
 
 In a canonical implementation, the function of the use case would be extracted outside the hook, and the services would be passed to the use case via a last argument or a DI:
 
